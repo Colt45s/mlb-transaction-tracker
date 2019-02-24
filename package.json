@@ -1,0 +1,41 @@
+{
+  "name": "mlb-transaction-tracker",
+  "version": "1.0.0",
+  "author": "Colt45s",
+  "license": "MIT",
+  "repository": "https://github.com/Colt45s/mlb-transaction-tracker.git",
+  "scripts": {
+    "dev": "parcel src/index.html watch",
+    "build": "parcel build src/index.html",
+    "lint": "eslint --fix src/**/*.{ts,tsx}"
+  },
+  "dependencies": {
+    "moment": "^2.24.0",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-infinite-scroller": "^1.2.4"
+  },
+  "devDependencies": {
+    "@types/react": "^16.8.3",
+    "@types/react-dom": "^16.8.1",
+    "@types/react-virtualized": "^9.18.12",
+    "@types/styled-components": "^4.1.10",
+    "@typescript-eslint/eslint-plugin": "^1.3.0",
+    "@typescript-eslint/parser": "^1.3.0",
+    "eslint": "^5.14.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.2.0",
+    "parcel-bundler": "^1.11.0",
+    "prettier": "^1.16.4",
+    "react-virtualized": "^9.21.0",
+    "styled-components": "^4.1.3",
+    "styled-reset": "^1.6.8",
+    "stylelint": "^9.10.1",
+    "stylelint-config-recommended": "^2.1.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.5.2",
+    "typescript": "3.3.3"
+  }
+}
