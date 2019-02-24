@@ -2,7 +2,7 @@
 
 Trackable MLB transactions by scroll
 
-## How To Dev
+## How to dev
 
 - `yarn dev`: Start dev server `http://localhost:1234`
 - `yarn build`: Generate `dist`
