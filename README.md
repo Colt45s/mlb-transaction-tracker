@@ -1,6 +1,6 @@
 # mlb-transaction-tracker
 
-Trackable MLB transactions by scroll
+Trackable MLB transactions by scrolling down
 
 ## How to dev
 
