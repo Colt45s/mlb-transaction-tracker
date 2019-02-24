@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { getStartDate, getCurrentDate, getYesterDay } from '../utils/date'
 
 const ENDPOINT =
-  'http://lookup-service-prod.mlb.com/json/named.transaction_all.bam?'
+  'https://lookup-service-prod.mlb.com/json/named.transaction_all.bam?'
 
 export type Row = {
   player: string
