@@ -1,7 +1,7 @@
 import React from 'react'
 import { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
-import InfiniteLoader from './InfiniteLoader'
+import InfiniteLoader from './infiniteLoader'
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
