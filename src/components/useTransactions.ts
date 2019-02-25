@@ -46,7 +46,7 @@ export const useTransactions = () => {
       const data = await response.json()
       const { queryResults } = data.transaction_all
 
-      if (queryResults.totalSize !== '0') {
+      if (queryResults.totalSize) {
         setState(_prev => ({
           ..._prev,
           isLoading: false,

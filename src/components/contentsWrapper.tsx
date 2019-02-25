@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react'
+import React, { memo, CSSProperties } from 'react'
 import { Row } from './useTransactions'
 import Content from './content'
 import styled from 'styled-components'
@@ -11,7 +11,7 @@ type Props = {
   className?: string
 }
 
-const View = React.memo((props: Props) => (
+const View = memo((props: Props) => (
   <div style={props.style} className={props.className}>
     <div>
       <Content

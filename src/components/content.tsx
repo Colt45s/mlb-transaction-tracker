@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Row } from './useTransactions'
 import Transaction from './transaction'
 
@@ -8,7 +8,7 @@ type Props = {
   error: any
 }
 
-export default React.memo((props: Props) => {
+export default memo((props: Props) => {
   if (props.error) {
     return <div>Error !</div>
   }
