@@ -854,13 +854,13 @@
     "@types/unist" "*"
     "@types/vfile-message" "*"
 
-"@typescript-eslint/eslint-plugin@1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-1.4.1.tgz#f752a6888a957fd411c7bcada11884c4257d374a"
-  integrity sha512-+7wRNSKK+flJR0pOcGuTP2QwoJYJ91jdZV8Hm0IwVAWTqww8Jt5sN7r/Mlf2oFmDcO8jpM3ajsZCHJ4MmBMRjA==
+"@typescript-eslint/eslint-plugin@1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-1.4.2.tgz#370bc32022d1cc884a5dcf62624ef2024182769d"
+  integrity sha512-6WInypy/cK4rM1dirKbD5p7iFW28DbSRKT/+PGn+DYzBWEvHq5KnZAqQ5cX25JBc0qMkFxJNxNfBbFXJyyzVcw==
   dependencies:
-    "@typescript-eslint/parser" "1.4.1"
-    "@typescript-eslint/typescript-estree" "1.4.1"
+    "@typescript-eslint/parser" "1.4.2"
+    "@typescript-eslint/typescript-estree" "1.4.2"
     requireindex "^1.2.0"
     tsutils "^3.7.0"
 
