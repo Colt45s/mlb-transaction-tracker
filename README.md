@@ -1,6 +1,8 @@
 # mlb-transaction-tracker
 
-Trackable MLB transactions by scrolling down
+[![Build Status](https://travis-ci.com/Colt45s/mlb-transaction-tracker.svg?branch=master)](https://travis-ci.com/Colt45s/mlb-transaction-tracker)
+
+> Trackable MLB transactions by scrolling down
 
 ## How to dev
 
