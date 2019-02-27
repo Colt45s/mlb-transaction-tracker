@@ -1,6 +1,7 @@
 {
   "name": "mlb-transaction-tracker",
   "version": "1.0.0",
+  "description": "Trackable MLB transactions by scrolling down",
   "author": "Colt45s",
   "license": "MIT",
   "repository": "https://github.com/Colt45s/mlb-transaction-tracker.git",
@@ -9,7 +10,7 @@
     "build": "parcel build src/index.html",
     "lint": "eslint --fix src/**/*.{ts,tsx}",
     "test": "jest",
-    "test:ci": "jest --coverage"
+    "test:ci": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "dependencies": {
     "moment": "2.24.0",
@@ -25,6 +26,7 @@
     "@types/styled-components": "4.1.10",
     "@typescript-eslint/eslint-plugin": "1.4.2",
     "@typescript-eslint/parser": "1.4.2",
+    "coveralls": "^3.0.3",
     "eslint": "5.14.1",
     "eslint-config-prettier": "4.0.0",
     "eslint-plugin-jest": "^22.3.0",
