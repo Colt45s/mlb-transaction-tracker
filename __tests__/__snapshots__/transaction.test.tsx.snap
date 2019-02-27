@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transaction 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bwzfXH ideAXj"
+  >
+    <div
+      class="contents"
+    >
+      <h3>
+        test
+      </h3>
+      <span
+        class="sc-bdVaJa Emoqn"
+      />
+      <p>
+        From : astros
+      </p>
+      <p>
+        To : hou
+      </p>
+      <p>
+        test
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;

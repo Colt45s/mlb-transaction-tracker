@@ -1,11 +1,14 @@
 {
   "parser": "@typescript-eslint/parser",
   "env": {
-    "browser": true
+    "node": true,
+    "browser": true,
+    "jest/globals": true
   },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:jest/recommended",
     "prettier/@typescript-eslint",
     "prettier/react"
   ],
@@ -13,7 +16,8 @@
     "@typescript-eslint",
     "react",
     "react-hooks",
-    "prettier"
+    "prettier",
+    "jest"
   ],
   "parserOptions": {
     "sourceType": "module",
@@ -37,6 +41,13 @@
 
     // hooks
     "react-hooks/rules-of-hooks": 2,
-    "react-hooks/exhaustive-deps": 1
+    "react-hooks/exhaustive-deps": 1,
+
+    // jest
+    "jest/no-disabled-tests": 1,
+    "jest/no-focused-tests": 2,
+    "jest/no-identical-title": 2,
+    "jest/prefer-to-have-length": 1,
+    "jest/valid-expect": 2
   }
 }
