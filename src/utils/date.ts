@@ -1,6 +1,6 @@
 import moment from 'moment'
 
-const DATE_FORMAT = 'YYYYMMDD' as `YYYYMMDD`
+const DATE_FORMAT = 'YYYYMMDD' as 'YYYYMMDD'
 
 export const getCurrentDate = () => {
   return moment().format(DATE_FORMAT)
