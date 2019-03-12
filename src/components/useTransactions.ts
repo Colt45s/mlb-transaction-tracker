@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getStartDate, getCurrentDate, getYesterDay } from '../utils/date'
+import { getStartDate, getCurrentDate, getYesterday } from '../utils/date'
 
 const ENDPOINT =
   'https://lookup-service-prod.mlb.com/json/named.transaction_all.bam?'
@@ -34,7 +34,7 @@ export const useTransactions = () => {
 
   const fetchTransactions = async () => {
     const endDate = state.startDate
-      ? getYesterDay(state.startDate)
+      ? getYesterday(state.startDate)
       : getCurrentDate()
     const startDate = getStartDate(endDate)
     const url = `${ENDPOINT}sport_code='mlb'&start_date=${startDate}&end_date=${endDate}`

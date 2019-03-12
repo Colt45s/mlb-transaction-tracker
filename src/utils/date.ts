@@ -6,7 +6,7 @@ export const getCurrentDate = () => {
   return moment().format(DATE_FORMAT)
 }
 
-export const getYesterDay = (targetDay: string) => {
+export const getYesterday = (targetDay: string) => {
   return moment(targetDay)
     .subtract(1, 'days')
     .format(DATE_FORMAT)
