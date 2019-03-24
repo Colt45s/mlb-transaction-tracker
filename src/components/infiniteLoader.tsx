@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import {
   InfiniteLoader,
   WindowScroller,
@@ -18,44 +18,54 @@ export default () => {
     }
   )
 
-  return (
-    <InfiniteLoader
-      threshold={0}
-      isRowLoaded={isRowLoaded}
-      loadMoreRows={fetchTransactions}
-      rowCount={infiniteRowCount()}
-    >
-      {({ onRowsRendered, registerChild }: InfiniteLoaderChildProps) => (
-        <WindowScroller>
-          {({
-            height,
-            isScrolling,
-            scrollTop,
-            onChildScroll
-          }: WindowScrollerChildProps) => (
-            <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-              <AutoSizer disableHeight={true}>
-                {({ width }) => (
-                  <List
-                    ref={registerChild}
-                    deferredMeasurementCache={cache}
-                    autoHeight={true}
-                    height={height}
-                    width={width}
-                    rowCount={state.transactions.length + 1}
-                    rowHeight={cache.rowHeight}
-                    rowRenderer={renderRow}
-                    isScrolling={isScrolling}
-                    scrollTop={scrollTop}
-                    onScroll={onChildScroll}
-                    onRowsRendered={onRowsRendered}
-                  />
-                )}
-              </AutoSizer>
-            </div>
-          )}
-        </WindowScroller>
-      )}
-    </InfiniteLoader>
+  return useMemo(
+    () => (
+      <InfiniteLoader
+        threshold={0}
+        isRowLoaded={isRowLoaded}
+        loadMoreRows={fetchTransactions}
+        rowCount={infiniteRowCount}
+      >
+        {({ onRowsRendered, registerChild }: InfiniteLoaderChildProps) => (
+          <WindowScroller>
+            {({
+              height,
+              isScrolling,
+              scrollTop,
+              onChildScroll
+            }: WindowScrollerChildProps) => (
+              <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+                <AutoSizer disableHeight={true}>
+                  {({ width }) => (
+                    <List
+                      ref={registerChild}
+                      deferredMeasurementCache={cache}
+                      autoHeight={true}
+                      height={height}
+                      width={width}
+                      rowCount={state.transactions.length + 1}
+                      rowHeight={cache.rowHeight}
+                      rowRenderer={renderRow}
+                      isScrolling={isScrolling}
+                      scrollTop={scrollTop}
+                      onScroll={onChildScroll}
+                      onRowsRendered={onRowsRendered}
+                    />
+                  )}
+                </AutoSizer>
+              </div>
+            )}
+          </WindowScroller>
+        )}
+      </InfiniteLoader>
+    ),
+    [
+      cache,
+      fetchTransactions,
+      infiniteRowCount,
+      isRowLoaded,
+      renderRow,
+      state.transactions.length
+    ]
   )
 }
