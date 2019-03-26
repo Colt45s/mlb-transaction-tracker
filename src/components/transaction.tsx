@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React from 'react'
 import { Row } from './useTransactions'
 import styled from 'styled-components'
 import Tag from './tag'
@@ -8,7 +8,7 @@ type Props = {
   className?: string
 }
 
-const View = memo((props: Props) => (
+const View = (props: Props) => (
   <div className={props.className}>
     <div className="contents">
       <h3>{props.transaction.player}</h3>
@@ -18,7 +18,7 @@ const View = memo((props: Props) => (
       <p>{props.transaction.note}</p>
     </div>
   </div>
-))
+)
 
 export default styled(View)`
   display: flex;
