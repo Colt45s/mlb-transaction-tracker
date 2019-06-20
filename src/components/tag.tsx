@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { pickColorByCodeType } from '../utils/color'
 
 type Props = {
-  code: 'RET' | 'DES' | 'SFA' | 'TR'
+  code: string
   type: string
   className?: string
 }

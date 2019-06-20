@@ -10,7 +10,7 @@ export type Row = {
   note: string
   from_team: string
   type: string
-  type_cd: 'RET' | 'DES' | 'SFA' | 'TR'
+  type_cd: string
 }
 
 export type State = {
