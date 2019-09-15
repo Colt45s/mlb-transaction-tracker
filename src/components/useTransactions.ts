@@ -1,25 +1,26 @@
-import { useState } from 'react'
-import { getStartDate, getCurrentDate, getYesterday } from '../utils/date'
+import { useState } from 'react';
+import { getStartDate, getCurrentDate, getYesterday } from '../utils/date';
 
 const ENDPOINT =
-  'https://lookup-service-prod.mlb.com/json/named.transaction_all.bam?'
+  'https://lookup-service-prod.mlb.com/json/named.transaction_all.bam';
 
 export type Row = {
-  player: string
-  team: string
-  note: string
-  from_team: string
-  type: string
-  type_cd: string
-}
+  player_id: string;
+  player: string;
+  team: string;
+  note: string;
+  from_team: string;
+  type: string;
+  type_cd: string;
+};
 
 export type State = {
-  error: any
-  isLoading: boolean
-  transactions: Row[]
-  startDate: string
-  endDate: string
-}
+  error: any;
+  isLoading: boolean;
+  transactions: Row[];
+  startDate: string;
+  endDate: string;
+};
 
 const defaultState = {
   error: null,
@@ -27,24 +28,24 @@ const defaultState = {
   transactions: [],
   startDate: '',
   endDate: ''
-}
+};
 
 export const useTransactions = () => {
-  const [state, setState] = useState<State>(defaultState)
+  const [state, setState] = useState<State>(defaultState);
 
   const fetchTransactions = async () => {
     const endDate = state.startDate
       ? getYesterday(state.startDate)
-      : getCurrentDate()
-    const startDate = getStartDate(endDate)
-    const url = `${ENDPOINT}sport_code='mlb'&start_date=${startDate}&end_date=${endDate}`
+      : getCurrentDate();
+    const startDate = getStartDate(endDate);
+    const url = `${ENDPOINT}?sport_code='mlb'&start_date=${startDate}&end_date=${endDate}`;
 
-    setState(_prev => ({ ..._prev, isLoading: true }))
+    setState(_prev => ({ ..._prev, isLoading: true }));
 
     try {
-      const response = await fetch(url)
-      const data = await response.json()
-      const { queryResults } = data.transaction_all
+      const response = await fetch(url);
+      const data = await response.json();
+      const { queryResults } = data.transaction_all;
 
       if (queryResults.totalSize) {
         setState(_prev => ({
@@ -58,7 +59,7 @@ export const useTransactions = () => {
           ),
           startDate,
           endDate
-        }))
+        }));
       } else {
         setState(_prev => ({
           ..._prev,
@@ -66,7 +67,7 @@ export const useTransactions = () => {
           isLoading: false,
           startDate,
           endDate
-        }))
+        }));
       }
     } catch (e) {
       setState(_prev => ({
@@ -75,12 +76,12 @@ export const useTransactions = () => {
         isLoading: false,
         startDate,
         endDate
-      }))
+      }));
     }
-  }
+  };
 
   return {
     state,
     fetchTransactions
-  }
-}
+  };
+};

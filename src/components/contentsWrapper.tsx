@@ -1,15 +1,15 @@
-import React, { useMemo, CSSProperties } from 'react'
-import { Row } from './useTransactions'
-import Content from './content'
-import styled from 'styled-components'
+import React, { useMemo, CSSProperties } from 'react';
+import { Row } from './useTransactions';
+import Content from './content';
+import styled from 'styled-components';
 
 type Props = {
-  style: CSSProperties
-  transaction: Row
-  isLoaded: boolean
-  error: any
-  className?: string
-}
+  style: CSSProperties;
+  transaction: Row;
+  isLoaded: boolean;
+  error: any;
+  className?: string;
+};
 
 const View = (props: Props) => {
   return (
@@ -27,8 +27,8 @@ const View = (props: Props) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default styled(View)`
   border-bottom: 1px solid #eee;
@@ -36,4 +36,4 @@ export default styled(View)`
   > * {
     padding: 0.5em;
   }
-`
+`;

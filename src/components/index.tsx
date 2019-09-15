@@ -1,7 +1,7 @@
-import React from 'react'
-import { createGlobalStyle } from 'styled-components'
-import reset from 'styled-reset'
-import InfiniteLoader from './infiniteLoader'
+import React from 'react';
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
+import InfiniteLoader from './infiniteLoader';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -10,11 +10,11 @@ const GlobalStyle = createGlobalStyle`
     font-size: 1em;
     font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
-`
+`;
 
 export default () => (
   <>
     <GlobalStyle />
     <InfiniteLoader />
   </>
-)
+);
