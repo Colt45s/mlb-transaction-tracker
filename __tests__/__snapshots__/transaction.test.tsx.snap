@@ -3,8 +3,12 @@
 exports[`snapshot props 1`] = `
 <DocumentFragment>
   <div
-    class="sc-bwzfXH ideAXj"
+    class="sc-bwzfXH ikXzqv"
   >
+    <img
+      src="https://gd.mlb.com/images/gameday/mugshots/mlb/@2x.jpg"
+      style="vertical-align: middle; width: 60px; height: 60px; border-radius: 50%;"
+    />
     <div
       class="contents"
     >
