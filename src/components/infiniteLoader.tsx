@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo } from 'react';
 import {
   InfiniteLoader,
   WindowScroller,
@@ -6,17 +6,17 @@ import {
   List,
   InfiniteLoaderChildProps,
   WindowScrollerChildProps
-} from 'react-virtualized'
-import { useTransactions } from './useTransactions'
-import { useInfiniteLoader } from './useInfiniteLoader'
+} from 'react-virtualized';
+import { useTransactions } from './useTransactions';
+import { useInfiniteLoader } from './useInfiniteLoader';
 
 export default () => {
-  const { state, fetchTransactions } = useTransactions()
+  const { state, fetchTransactions } = useTransactions();
   const { renderRow, infiniteRowCount, isRowLoaded, cache } = useInfiniteLoader(
     {
       state
     }
-  )
+  );
 
   return useMemo(
     () => (
@@ -67,5 +67,5 @@ export default () => {
       renderRow,
       state.transactions.length
     ]
-  )
-}
+  );
+};

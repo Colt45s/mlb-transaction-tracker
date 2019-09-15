@@ -1,16 +1,16 @@
-import React from 'react'
-import styled from 'styled-components'
-import { pickColorByCodeType } from '../utils/color'
+import React from 'react';
+import styled from 'styled-components';
+import { pickColorByCodeType } from '../utils/color';
 
 type Props = {
-  code: string
-  type: string
-  className?: string
-}
+  code: string;
+  type: string;
+  className?: string;
+};
 
 const View = (props: Props) => (
   <span className={props.className}>{props.type}</span>
-)
+);
 
 export default styled(View)`
   display: inline-block;
@@ -24,4 +24,4 @@ export default styled(View)`
   border-radius: 0.25rem;
   color: #fff;
   background-color: ${props => pickColorByCodeType(props.code) || '#343a40'};
-`
+`;
