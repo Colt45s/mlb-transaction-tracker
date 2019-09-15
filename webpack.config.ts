@@ -35,7 +35,9 @@ const base: webpack.Configuration = {
     new ForkTsCheckerWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/index.html'
-    })
+    }),
+    // eslint-disable-next-line no-useless-escape
+    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /ja/)
   ]
 };
 
