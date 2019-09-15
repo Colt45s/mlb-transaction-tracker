@@ -1,4 +1,5 @@
 import webpack from 'webpack';
+import StatsPlugin from 'stats-webpack-plugin';
 
 const config: webpack.Configuration = {
   mode: 'production',
@@ -6,7 +7,12 @@ const config: webpack.Configuration = {
     filename: '[name].[contenthash].js',
     chunkFilename: '[name].[contenthash].[id].bundle.js'
   },
-  plugins: [new webpack.optimize.AggressiveMergingPlugin()],
+  plugins: [
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new StatsPlugin('stats.json', {
+      chunkModules: true
+    })
+  ],
   optimization: {
     splitChunks: {
       cacheGroups: {
