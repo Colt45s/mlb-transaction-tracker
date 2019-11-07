@@ -1,87 +1,63 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { getStartDate, getCurrentDate, getYesterday } from '../utils/date';
+import { Dispatch } from 'redux';
+import { useDispatch } from 'react-redux';
+import { useSelector } from '../utils/useSelector';
+import { Action } from '../actions/transaction';
+import { fetchTransactionSuccess } from '../actions/transaction';
+import { Row } from '../reducers/transaction';
 
 const ENDPOINT =
   'https://lookup-service-prod.mlb.com/json/named.transaction_all.bam';
 
-export type Row = {
-  player_id: string;
-  player: string;
-  team: string;
-  note: string;
-  from_team: string;
-  type: string;
-  type_cd: string;
-};
+export function useTransactions(): [Row[], () => Promise<void>, boolean, any] {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<any>(null);
+  const [baseDate, setBaseDate] = useState('');
 
-export type State = {
-  error: any;
-  isLoading: boolean;
-  transactions: Row[];
-  startDate: string;
-  endDate: string;
-};
+  const items = useSelector(state => state.transaction.items);
+  const dispatch = useDispatch<Dispatch<Action>>();
 
-const defaultState = {
-  error: null,
-  isLoading: false,
-  transactions: [],
-  startDate: '',
-  endDate: ''
-};
+  const fetchTransactions = useCallback(
+    async bd => {
+      const endDate = bd ? getYesterday(bd) : getCurrentDate();
+      const startDate = getStartDate(endDate);
+      const url = `${ENDPOINT}?sport_code='mlb'&start_date=${startDate}&end_date=${endDate}`;
 
-export const useTransactions = () => {
-  const [state, setState] = useState<State>(defaultState);
+      setLoading(true);
 
-  const fetchTransactions = async () => {
-    const endDate = state.startDate
-      ? getYesterday(state.startDate)
-      : getCurrentDate();
-    const startDate = getStartDate(endDate);
-    const url = `${ENDPOINT}?sport_code='mlb'&start_date=${startDate}&end_date=${endDate}`;
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const { queryResults } = data.transaction_all;
 
-    setState(_prev => ({ ..._prev, isLoading: true }));
+        setLoading(false);
 
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      const { queryResults } = data.transaction_all;
-
-      if (queryResults.totalSize) {
-        setState(_prev => ({
-          ..._prev,
-          isLoading: false,
-          transactions: _prev.transactions.concat(
-            queryResults.row
-              .slice()
-              .reverse()
-              .filter((i: any) => i.orig_asset_type === 'PL')
-          ),
-          startDate,
-          endDate
-        }));
-      } else {
-        setState(_prev => ({
-          ..._prev,
-          error: null,
-          isLoading: false,
-          startDate,
-          endDate
-        }));
+        if (!parseInt(queryResults.totalSize)) {
+          // fetch prev week
+          fetchTransactions(startDate);
+        } else {
+          dispatch(
+            fetchTransactionSuccess(
+              queryResults.row
+                .slice()
+                .reverse()
+                .filter((i: any) => i.orig_asset_type === 'PL')
+            )
+          );
+        }
+        setBaseDate(startDate);
+      } catch (e) {
+        setLoading(false);
+        setError(e.messsage);
       }
-    } catch (e) {
-      setState(_prev => ({
-        ..._prev,
-        error: e,
-        isLoading: false,
-        startDate,
-        endDate
-      }));
-    }
-  };
+    },
+    [dispatch]
+  );
 
-  return {
-    state,
-    fetchTransactions
-  };
-};
+  const fetcher = useCallback(async () => {
+    fetchTransactions(baseDate);
+  }, [baseDate, fetchTransactions]);
+
+  return [items, fetcher, loading, error];
+}

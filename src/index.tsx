@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Root from './components/index';
+import { App } from './components/app';
 
 const render = () => {
-  ReactDOM.render(<Root />, document.getElementById('root'));
+  ReactDOM.render(<App />, document.getElementById('root'));
 };
 
 if ((module as any).hot) {

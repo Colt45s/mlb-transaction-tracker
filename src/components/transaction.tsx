@@ -1,7 +1,7 @@
-import React from 'react';
-import { Row } from './useTransactions';
+import React, { useRef, useCallback } from 'react';
+import { Row } from '../reducers/transaction';
 import styled from 'styled-components';
-import Tag from './tag';
+import { Tag } from './tag';
 
 type Props = {
   transaction: Row;
@@ -12,18 +12,30 @@ const View = (props: Props) => {
   const imgSrc = `https://gd.mlb.com/images/gameday/mugshots/mlb/${
     props.transaction.player_id
   }@2x.jpg`;
+  const imgWrapRef = useRef<HTMLDivElement>(null);
+
+  const handleImgError = useCallback(() => {
+    if (imgWrapRef) {
+      if (imgWrapRef.current) {
+        imgWrapRef.current.style.visibility = 'hidden';
+      }
+    }
+  }, []);
 
   return (
     <div className={props.className}>
-      <img
-        style={{
-          verticalAlign: 'middle',
-          width: '60px',
-          height: '60px',
-          borderRadius: '50%'
-        }}
-        src={imgSrc}
-      />
+      <div ref={imgWrapRef}>
+        <img
+          style={{
+            verticalAlign: 'middle',
+            width: '60px',
+            height: '60px',
+            borderRadius: '50%'
+          }}
+          src={imgSrc}
+          onError={handleImgError}
+        />
+      </div>
 
       <div className="contents">
         <h3>{props.transaction.player}</h3>
@@ -36,7 +48,7 @@ const View = (props: Props) => {
   );
 };
 
-export default styled(View)`
+export const Transaction = styled(View)`
   display: flex;
   flex-direction: row;
   align-items: center;

@@ -1,7 +1,9 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
-import InfiniteLoader from './infiniteLoader';
+import { store } from '../store';
+import { Provider } from 'react-redux';
+import { TransactionTracker } from './transactionTracker';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -12,9 +14,13 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export default () => (
-  <>
-    <GlobalStyle />
-    <InfiniteLoader />
-  </>
-);
+export function App() {
+  return (
+    <>
+      <GlobalStyle />
+      <Provider store={store}>
+        <TransactionTracker />
+      </Provider>
+    </>
+  );
+}
