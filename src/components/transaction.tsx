@@ -53,7 +53,7 @@ export const Transaction = styled(View)`
   flex-direction: row;
   align-items: center;
 
-  > .contents {
+  > * {
     padding: 0.5rem;
   }
 
