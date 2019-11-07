@@ -13,7 +13,7 @@ const base: webpack.Configuration = {
   entry: path.resolve('src', 'index.tsx'),
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist/',
+    publicPath: '/',
     filename: '[name].js'
   },
   module: {
