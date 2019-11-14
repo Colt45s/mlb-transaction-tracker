@@ -57,7 +57,7 @@
     "html-webpack-plugin": "3.2.0",
     "jest": "24.9.0",
     "prettier": "1.19.1",
-    "react-virtualized": "9.21.1",
+    "react-virtualized": "9.21.2",
     "redux-devtools-extension": "2.13.8",
     "rimraf": "3.0.0",
     "stats-webpack-plugin": "0.7.0",
