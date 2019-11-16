@@ -18,6 +18,7 @@ const config: webpack.Configuration = {
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ],
+  // @ts-ignore
   devServer
 };
 

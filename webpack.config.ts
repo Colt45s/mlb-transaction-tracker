@@ -33,6 +33,7 @@ const base: webpack.Configuration = {
       NODE_ENV: 'development'
     }),
     new ForkTsCheckerWebpackPlugin(),
+    // @ts-ignore
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     }),
@@ -41,4 +42,5 @@ const base: webpack.Configuration = {
   ]
 };
 
+// @ts-ignore
 export default merge(base, config);
