@@ -16,7 +16,7 @@ type Props = {
 
 const cache = new CellMeasurerCache({
   fixedHeight: true,
-  minHeight: 160,
+  minHeight: 180,
   fixedWidth: true
 });
 

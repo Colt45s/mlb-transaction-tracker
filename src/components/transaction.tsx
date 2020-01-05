@@ -9,9 +9,7 @@ type Props = {
 };
 
 const View = (props: Props) => {
-  const imgSrc = `https://gd.mlb.com/images/gameday/mugshots/mlb/${
-    props.transaction.player_id
-  }@2x.jpg`;
+  const imgSrc = `https://gd.mlb.com/images/gameday/mugshots/mlb/${props.transaction.player_id}@2x.jpg`;
   const imgWrapRef = useRef<HTMLDivElement>(null);
 
   const handleImgError = useCallback(() => {
