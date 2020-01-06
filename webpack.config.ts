@@ -22,6 +22,10 @@ const base: webpack.Configuration = {
         test: /\.tsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.png?$/,
+        loader: 'file-loader'
       }
     ]
   },
@@ -35,7 +39,8 @@ const base: webpack.Configuration = {
     new ForkTsCheckerWebpackPlugin(),
     // @ts-ignore
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: 'src/index.html',
+      favicon: 'assets/icons/icon.png'
     }),
     // eslint-disable-next-line no-useless-escape
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /ja/)
