@@ -22,10 +22,6 @@ const base: webpack.Configuration = {
         test: /\.tsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/
-      },
-      {
-        test: /\.png?$/,
-        loader: 'file-loader'
       }
     ]
   },
@@ -39,8 +35,20 @@ const base: webpack.Configuration = {
     new ForkTsCheckerWebpackPlugin(),
     // @ts-ignore
     new HtmlWebpackPlugin({
+      inject: true,
       template: 'src/index.html',
-      favicon: 'assets/icons/icon.png'
+      minify:
+        process.env.NODE_ENV === 'production'
+          ? {
+              collapseWhitespace: true,
+              removeComments: true,
+              removeRedundantAttributes: true,
+              removeScriptTypeAttributes: true,
+              removeStyleLinkTypeAttributes: true,
+              useShortDoctype: true
+            }
+          : false,
+      favicon: 'assets/icons/favicon.ico'
     }),
     // eslint-disable-next-line no-useless-escape
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /ja/)

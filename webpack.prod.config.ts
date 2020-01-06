@@ -24,11 +24,29 @@ const config: webpack.Configuration = {
       background_color: '#2196f3',
       display: 'standalone',
       scope: '/',
+      ios: true,
       start_url: 'https://mlb-transaction-tracker.netlify.com/',
       icons: [
         {
           src: path.resolve('assets', 'icons', 'icon.png'),
           sizes: [96, 128, 192, 256, 384, 512]
+        },
+        {
+          src: path.resolve('assets', 'icons', 'icon.png'),
+          sizes: [36, 48, 72, 96, 144, 192, 512],
+          destination: path.join('icons', 'android')
+        },
+        {
+          src: path.resolve('assets', 'icons', 'icon.png'),
+          sizes: [120, 152, 167, 180, 1024],
+          destination: path.join('icons', 'ios'),
+          ios: true
+        },
+        {
+          src: path.resolve('assets', 'icons', 'icon.png'),
+          size: 1024,
+          destination: path.join('icons', 'ios', 'startup')
+          // ios: 'startup'
         }
       ]
     }),
