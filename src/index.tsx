@@ -26,5 +26,5 @@ if ('serviceWorker' in navigator) {
       });
   });
 
-  // window.addEventListener('fetch', () => {});
+  window.addEventListener('fetch', () => {});
 }
