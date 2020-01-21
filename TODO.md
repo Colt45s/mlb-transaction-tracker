@@ -1,3 +1,3 @@
 # TODO
 
-- [ ] PWA
+- [x] PWA
