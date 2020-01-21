@@ -44,16 +44,7 @@ export function useInfiniteLoader(
   const renderRow = useCallback(
     ({ index, key, parent, style }: ListRowProps) => {
       const transaction = props.items[index];
-      const error = props.error;
       const isLoaded = isRowLoaded({ index });
-
-      if (!transaction) {
-        return null;
-      }
-
-      if (!Object.keys(transaction).length) {
-        return null;
-      }
 
       return (
         <CellMeasurer
@@ -66,13 +57,14 @@ export function useInfiniteLoader(
           <Content
             style={style}
             transaction={transaction}
-            isLoaded={isLoaded}
-            error={error}
+            isRowLoaded={isLoaded}
+            error={props.error}
+            loading={props.loading}
           />
         </CellMeasurer>
       );
     },
-    [isRowLoaded, props.error, props.items]
+    [isRowLoaded, props.error, props.items, props.loading]
   );
 
   return [renderRow, infiniteRowCount, isRowLoaded, cache];

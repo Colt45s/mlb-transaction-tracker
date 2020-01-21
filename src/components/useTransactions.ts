@@ -26,37 +26,42 @@ export function useTransactions(): [Row[], () => Promise<void>, boolean, any] {
 
       setLoading(true);
 
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        const { queryResults } = data.transaction_all;
+      const response = await fetch(url);
 
-        setLoading(false);
-
-        if (!parseInt(queryResults.totalSize)) {
-          // fetch prev week
-          fetchTransactions(startDate);
-        } else {
-          dispatch(
-            fetchTransactionSuccess(
-              queryResults.row
-                .slice()
-                .reverse()
-                .filter((i: any) => i.orig_asset_type === 'PL')
-            )
-          );
-        }
-        setBaseDate(startDate);
-      } catch (e) {
-        setLoading(false);
-        setError(e.messsage);
+      if (!response.ok) {
+        throw new Error(`Request failed: ${response.status}`);
       }
+
+      const data = await response.json();
+      const { queryResults } = data.transaction_all;
+
+      setLoading(false);
+
+      if (!parseInt(queryResults.totalSize)) {
+        // fetch prev week
+        await fetchTransactions(startDate);
+      } else {
+        dispatch(
+          fetchTransactionSuccess(
+            queryResults.row
+              .slice()
+              .reverse()
+              .filter((i: any) => i.orig_asset_type === 'PL')
+          )
+        );
+      }
+      setBaseDate(startDate);
     },
     [dispatch]
   );
 
   const fetcher = useCallback(async () => {
-    fetchTransactions(baseDate);
+    try {
+      await fetchTransactions(baseDate);
+    } catch (e) {
+      setLoading(false);
+      setError(e);
+    }
   }, [baseDate, fetchTransactions]);
 
   return [items, fetcher, loading, error];
