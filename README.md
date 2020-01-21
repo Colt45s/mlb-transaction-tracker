@@ -6,7 +6,7 @@
 
 ## How to dev
 
-- `yarn dev`: Start dev server `http://localhost:1234`
+- `yarn dev`: Start dev server `http://localhost:8080`
 - `yarn build`: Generate `dist`
 
 ## LICENSE
