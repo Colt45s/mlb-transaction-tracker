@@ -7,7 +7,7 @@ import {
 } from 'react-virtualized';
 import { Row } from '../transactionTracker';
 import { Loading } from '../Loading';
-import { Transaction } from '../transaction';
+import { Transaction } from '../Transaction';
 import { MainContent } from '../MainContent';
 
 type Props = {
