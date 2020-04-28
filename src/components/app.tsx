@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
-import { store } from '../store';
-import { Provider } from 'react-redux';
-import { TransactionTracker } from './transactionTracker';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+
+const TransactionTracker = React.lazy(() => import('./transactionTracker'));
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
+  @import url('https://fonts.googleapis.com/css?family=Baloo+Paaji+2&display=swap');
+  html {
+    font-size: 62.5%;
+  }
   body {
-    line-height: 1.75;
-    font-size: 1em;
-    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    line-height: 1.5;
+    font-size: 1.4rem;
+    font-family: 'Baloo Paaji 2', cursive;
+    background-color: #f8f8f8;
   }
 `;
 
@@ -18,9 +23,9 @@ export function App() {
   return (
     <>
       <GlobalStyle />
-      <Provider store={store}>
+      <Suspense fallback={null}>
         <TransactionTracker />
-      </Provider>
+      </Suspense>
     </>
   );
 }

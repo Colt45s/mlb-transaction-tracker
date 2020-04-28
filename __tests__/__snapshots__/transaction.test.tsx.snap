@@ -3,33 +3,44 @@
 exports[`snapshot props 1`] = `
 <DocumentFragment>
   <div
-    class="sc-bwzfXH iOYpmp"
+    class="sc-bwzfXH iTsgVA"
   >
-    <div>
-      <img
-        src="https://content.mlb.com/images/headshots/current/60x60/@2x.png"
-        style="width: 80px; height: auto; vertical-align: middle;"
-      />
-    </div>
+    <img
+      class="sc-bdVaJa kMRhbV"
+      src="https://content.mlb.com/images/headshots/current/60x60/@2x.png"
+    />
+  </div>
+  <div
+    class="sc-bZQynM EvJhB"
+  >
     <div
-      class="contents"
+      class="sc-EHOje gUATjZ"
     >
-      <h3>
-        test
-      </h3>
-      <span
-        class="sc-bdVaJa ldkgbU"
-      />
-      <p>
-        From : astros
+      <p
+        class="sc-htpNat jzBxlJ"
+      >
+        astros
       </p>
-      <p>
-        To : hou
-      </p>
-      <p>
-        test
-      </p>
+      <div
+        class="sc-ifAKCX dALShg"
+      >
+        <div>
+          <span
+            class="sc-bxivhb isBNKu"
+          />
+        </div>
+      </div>
     </div>
+    <p
+      class="sc-htpNat cDhceQ"
+    >
+      test
+    </p>
+    <p
+      class="sc-htpNat fwYXhw"
+    >
+      test
+    </p>
   </div>
 </DocumentFragment>
 `;

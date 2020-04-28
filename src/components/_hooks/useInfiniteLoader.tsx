@@ -1,16 +1,17 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import {
   CellMeasurer,
   CellMeasurerCache,
   ListRowProps,
   Index
 } from 'react-virtualized';
-import { Content } from './content';
-import { Row } from '../reducers/transaction';
+import { Row } from '../transactionTracker';
+import { Loading } from '../Loading';
+import { Transaction } from '../transaction';
+import { MainContent } from '../MainContent';
 
 type Props = {
   items: Row[];
-  loading: boolean;
   error: any;
 };
 
@@ -24,19 +25,12 @@ export function useInfiniteLoader(
   props: Props
 ): [
   ({ index, key, parent, style }: ListRowProps) => JSX.Element | null,
-  number,
   ({ index }: Index) => boolean,
   CellMeasurerCache
 ] {
-  const infiniteRowCount = useMemo(() => {
-    const transactionsLength = props.items.length;
-
-    return props.loading ? transactionsLength : transactionsLength + 1;
-  }, [props.items.length, props.loading]);
-
   const isRowLoaded = useCallback(
     ({ index }: Index) => {
-      return !!props.items[index];
+      return index < props.items.length;
     },
     [props.items]
   );
@@ -44,7 +38,16 @@ export function useInfiniteLoader(
   const renderRow = useCallback(
     ({ index, key, parent, style }: ListRowProps) => {
       const transaction = props.items[index];
-      const isLoaded = isRowLoaded({ index });
+
+      let content: JSX.Element;
+
+      if (props.error) {
+        content = <div>No Results</div>;
+      } else if (index >= props.items.length) {
+        content = <Loading />;
+      } else {
+        content = <Transaction transaction={transaction} />;
+      }
 
       return (
         <CellMeasurer
@@ -54,18 +57,12 @@ export function useInfiniteLoader(
           rowIndex={index}
           parent={parent}
         >
-          <Content
-            style={style}
-            transaction={transaction}
-            isRowLoaded={isLoaded}
-            error={props.error}
-            loading={props.loading}
-          />
+          <MainContent style={style}>{content}</MainContent>
         </CellMeasurer>
       );
     },
-    [isRowLoaded, props.error, props.items, props.loading]
+    [props.error, props.items]
   );
 
-  return [renderRow, infiniteRowCount, isRowLoaded, cache];
+  return [renderRow, isRowLoaded, cache];
 }

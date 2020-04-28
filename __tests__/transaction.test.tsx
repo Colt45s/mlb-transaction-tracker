@@ -2,8 +2,8 @@ import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-import { Transaction } from '../src/components/transaction';
-import { Row } from '../src/reducers/transaction';
+import { Transaction } from '../src/components/Transaction';
+import { Row } from '../src/components/transactionTracker';
 
 afterEach(cleanup);
 

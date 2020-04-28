@@ -1,18 +1,25 @@
 import React from 'react';
+import styled from 'styled-components';
 
 type Props = {
   imgRef: React.RefObject<HTMLImageElement>;
   src: string;
   alt?: string;
-  style?: React.CSSProperties;
   handleImgError: () => void;
+  className?: string;
 };
 
-export const Image = React.memo((props: Props) => (
+const View: React.FC<Props> = props => (
   <img
     ref={props.imgRef}
-    style={props.style}
     src={props.src}
     onError={props.handleImgError}
+    className={props.className}
   />
-));
+);
+
+export const Image = styled(View)`
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+`;

@@ -17,9 +17,7 @@
   "dependencies": {
     "moment": "2.24.0",
     "react": "16.12.0",
-    "react-dom": "16.12.0",
-    "react-redux": "7.1.3",
-    "redux": "4.0.4"
+    "react-dom": "16.12.0"
   },
   "devDependencies": {
     "@babel/core": "7.7.2",
@@ -34,7 +32,7 @@
     "@types/jest": "24.0.23",
     "@types/react": "16.9.11",
     "@types/react-dom": "16.9.4",
-    "@types/react-redux": "7.1.5",
+    "@types/react-loader-spinner": "^3.1.0",
     "@types/react-virtualized": "9.21.5",
     "@types/styled-components": "4.4.0",
     "@types/webpack": "4.41.0",
@@ -48,6 +46,7 @@
     "babel-loader": "8.0.6",
     "core-js": "3.4.1",
     "cross-env": "6.0.3",
+    "css-loader": "^3.5.3",
     "eslint": "6.6.0",
     "eslint-config-prettier": "6.5.0",
     "eslint-plugin-jest": "23.0.4",
@@ -58,10 +57,11 @@
     "html-webpack-plugin": "3.2.0",
     "jest": "24.9.0",
     "prettier": "1.19.1",
+    "react-loader-spinner": "^3.1.14",
     "react-virtualized": "9.21.2",
-    "redux-devtools-extension": "2.13.8",
     "rimraf": "3.0.0",
     "stats-webpack-plugin": "0.7.0",
+    "style-loader": "^1.2.0",
     "styled-components": "4.4.1",
     "styled-reset": "4.0.7",
     "stylelint": "12.0.0",

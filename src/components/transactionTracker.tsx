@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import {
   InfiniteLoader,
   WindowScroller,
@@ -7,14 +7,53 @@ import {
   InfiniteLoaderChildProps,
   WindowScrollerChildProps
 } from 'react-virtualized';
-import { useTransactions } from './useTransactions';
-import { useInfiniteLoader } from './useInfiniteLoader';
+import { useTransactions } from './_hooks/useTransactions';
+import { useInfiniteLoader } from './_hooks/useInfiniteLoader';
 
-export function TransactionTracker() {
-  const [items, fetcher, loading, error] = useTransactions();
-  const [renderRow, infiniteRowCount, isRowLoaded, cache] = useInfiniteLoader({
+export type Row = {
+  player_id: string;
+  player: string;
+  team: string;
+  note: string;
+  from_team: string;
+  type: string;
+  type_cd: string;
+};
+
+export type State = {
+  error: any;
+  items: Row[];
+};
+
+export type Action =
+  | { type: 'SUCCESS'; payload: { items: Row[] | [] } }
+  | { type: 'ERROR'; payload: { error: any } };
+
+function reducer(state: State, action: Action): State {
+  switch (action.type) {
+    case 'SUCCESS':
+      return {
+        ...state,
+        items: state.items.concat(action.payload.items)
+      };
+    case 'ERROR':
+      return {
+        ...state,
+        error: action.payload.error
+      };
+    default:
+      throw new Error('no such action type');
+  }
+}
+
+export default () => {
+  const [{ items, error }, dispatch] = useReducer(reducer, {
+    error: null,
+    items: []
+  });
+  const fetcher = useTransactions(dispatch);
+  const [renderRow, isRowLoaded, cache] = useInfiniteLoader({
     items,
-    loading,
     error
   });
 
@@ -23,7 +62,7 @@ export function TransactionTracker() {
       threshold={0}
       isRowLoaded={isRowLoaded}
       loadMoreRows={fetcher}
-      rowCount={infiniteRowCount}
+      rowCount={items.length + 1}
     >
       {({ onRowsRendered, registerChild }: InfiniteLoaderChildProps) => (
         <WindowScroller>
@@ -33,7 +72,14 @@ export function TransactionTracker() {
             scrollTop,
             onChildScroll
           }: WindowScrollerChildProps) => (
-            <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+            <div
+              style={{
+                maxWidth: '900px',
+                margin: '0 auto',
+                padding: '0 1rem',
+                backgroundColor: '#fff'
+              }}
+            >
               <AutoSizer disableHeight={true}>
                 {({ width }) => (
                   <List
@@ -58,4 +104,4 @@ export function TransactionTracker() {
       )}
     </InfiniteLoader>
   );
-}
+};

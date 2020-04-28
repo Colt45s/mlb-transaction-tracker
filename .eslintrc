@@ -38,6 +38,7 @@
 
     // react
     "react/display-name": 0,
+    "react/prop-types": 0,
 
     // hooks
     "react-hooks/rules-of-hooks": 2,
