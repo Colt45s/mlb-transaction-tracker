@@ -26,7 +26,7 @@ const config: webpack.Configuration = {
       display: 'standalone',
       scope: '/',
       ios: true,
-      start_url: 'https://mlb-transaction-tracker.netlify.app/',
+      start_url: './',
       icons: [
         {
           src: path.resolve('assets', 'icons', 'icon.png'),
