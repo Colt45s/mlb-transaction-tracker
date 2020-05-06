@@ -70,7 +70,7 @@ const config: webpack.Configuration = {
         },
         {
           urlPattern:
-            'https://lookup-service-prod.mlb.com/json/named.transaction_all.bam',
+            'https://lookup-service-prod.mlb.app/json/named.transaction_all.bam',
           handler: 'NetworkFirst' as const,
           options: {
             cacheName: 'api',
