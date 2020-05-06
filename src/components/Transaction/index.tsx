@@ -36,6 +36,7 @@ export function Transaction(props: Props) {
       <PlayerIcon
         imgRef={imgRef}
         imgSrc={imgSrc}
+        alt={props.transaction.player}
         handleImgError={handleImgError}
       />
       <TransactionDetail transaction={props.transaction} tagColor={tagColor} />

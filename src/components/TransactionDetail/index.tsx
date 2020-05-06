@@ -12,7 +12,7 @@ type Props = {
   tagColor: string;
 };
 
-const View: React.FC<Props> = props => (
+const View: React.FC<Props> = React.memo(props => (
   <div className={props.className}>
     <Header>
       <Text fontSize="2rem" color="#666666">
@@ -27,7 +27,7 @@ const View: React.FC<Props> = props => (
       {props.transaction.note}
     </Text>
   </div>
-);
+));
 
 export const TransactionDetail = styled(View)`
   width: 100%;

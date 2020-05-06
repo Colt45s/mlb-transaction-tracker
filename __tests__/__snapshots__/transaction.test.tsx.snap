@@ -6,6 +6,7 @@ exports[`snapshot props 1`] = `
     class="sc-bwzfXH iTsgVA"
   >
     <img
+      alt="test"
       class="sc-bdVaJa kMRhbV"
       src="https://content.mlb.com/images/headshots/current/60x60/@2x.png"
     />

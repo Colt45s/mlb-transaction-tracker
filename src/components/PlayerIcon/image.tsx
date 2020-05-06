@@ -13,6 +13,7 @@ const View: React.FC<Props> = props => (
   <img
     ref={props.imgRef}
     src={props.src}
+    alt={props.alt}
     onError={props.handleImgError}
     className={props.className}
   />
