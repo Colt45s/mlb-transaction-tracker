@@ -1,5 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
+//@ts-ignore
 import StatsPlugin from 'stats-webpack-plugin';
 import { GenerateSW } from 'workbox-webpack-plugin';
 import PwaManifest from 'webpack-pwa-manifest';
@@ -25,7 +26,7 @@ const config: webpack.Configuration = {
       display: 'standalone',
       scope: '/',
       ios: true,
-      start_url: 'https://mlb-transaction-tracker.netlify.com/',
+      start_url: 'https://mlb-transaction-tracker.netlify.app/',
       icons: [
         {
           src: path.resolve('assets', 'icons', 'icon.png'),

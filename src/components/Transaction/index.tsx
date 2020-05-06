@@ -1,8 +1,8 @@
 import React, { useRef, useCallback, useMemo } from 'react';
-import { pickColorByCodeType } from '../../utils/color';
 import { Row } from '../transactionTracker';
 import { PlayerIcon } from '../PlayerIcon';
 import { TransactionDetail } from '../TransactionDetail';
+import stc from 'string-to-color';
 
 type Props = {
   transaction: Row;
@@ -27,10 +27,9 @@ export function Transaction(props: Props) {
     }
   }, []);
 
-  const tagColor = useMemo(
-    () => pickColorByCodeType(props.transaction.type_cd) || '#343a40',
-    [props.transaction.type_cd]
-  );
+  const tagColor = useMemo(() => stc(props.transaction.type_cd), [
+    props.transaction.type_cd
+  ]);
 
   return (
     <>
